@@ -1,6 +1,7 @@
 package ilya.lesnikov.api.tests;
 
 import ilya.lesnikov.api.config.Configuration;
+import ilya.lesnikov.api.generatos.TestDataStorage;
 import ilya.lesnikov.api.models.TestData;
 import ilya.lesnikov.api.requests.CheckedRequest;
 import ilya.lesnikov.api.spec.Specifications;
@@ -37,5 +38,7 @@ public class BaseTest {
     @AfterEach
     public void afterTest() {
         softAssertions.assertAll();
+
+        TestDataStorage.getInstance().deleteCreatedEntities();
     }
 }

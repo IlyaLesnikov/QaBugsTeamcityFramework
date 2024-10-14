@@ -5,16 +5,18 @@ import ilya.lesnikov.api.models.Project;
 import ilya.lesnikov.api.requests.CheckedRequest;
 import ilya.lesnikov.api.requests.UncheckedRequest;
 import ilya.lesnikov.api.spec.Specifications;
+import ilya.lesnikov.api.utils.AssertionUtils;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
 import java.net.HttpURLConnection;
-import java.util.Collections;
+import java.util.Arrays;
 
 import static ilya.lesnikov.api.enums.Endpoint.*;
 import static ilya.lesnikov.api.generatos.TestDataGenerator.generate;
+import static ilya.lesnikov.api.utils.AssertionUtils.assertEquals;
 import static io.qameta.allure.Allure.step;
 
 @Tag("Regress")
@@ -43,27 +45,22 @@ public class BuildTypeTest extends BaseTest {
                 .<BuildType>getRequest(BUILD_TYPES)
                 .read(testData.getBuildType().getId());
 
-        softAssertions.assertThat(testData.getBuildType().getName())
-                .isEqualTo(createBuildType.getName());
+        assertEquals(testData.getBuildType().getName(), createBuildType.getName());
     }
 
     @Test
     @Tags({@Tag("Negative"), @Tag("CRUD")})
     @DisplayName("Создание существующего билда")
     public void test2() {
-        var buildTypeWithSameId = generate(Collections.singletonList(testData.getProject()), BuildType.class, testData.getBuildType().getId());
-        var userCheckRequester = new CheckedRequest(Specifications.authSpec(testData.getUser()));
-        superUserCheckedRequest
-                .getRequest(USERS)
-                .create(testData.getUser());
+        var buildTypeWithSameId = generate(Arrays.asList(testData.getProject()), BuildType.class, testData.getBuildType().getId());
 
-        userCheckRequester
-                .<Project>getRequest(PROJECTS)
-                .create(testData.getProject());
+        superUserCheckedRequest.getRequest(USERS).create(testData.getUser());
 
-        userCheckRequester
-                .getRequest(BUILD_TYPES)
-                .create(testData.getBuildType());
+        var userCheckRequests = new CheckedRequest(Specifications.authSpec(testData.getUser()));
+
+        userCheckRequests.<Project>getRequest(PROJECTS).create(testData.getProject());
+
+        userCheckRequests.getRequest(BUILD_TYPES).create(testData.getBuildType());
 
         var expectedResult = """
                 Responding with error, status code: 400 (Bad Request).

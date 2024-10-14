@@ -1,6 +1,7 @@
 package ilya.lesnikov.api.requests.checked;
 
 import ilya.lesnikov.api.enums.Endpoint;
+import ilya.lesnikov.api.generatos.TestDataStorage;
 import ilya.lesnikov.api.models.BaseModel;
 import ilya.lesnikov.api.requests.CrudInterface;
 import ilya.lesnikov.api.requests.Request;
@@ -19,10 +20,14 @@ public class CheckedBase<T extends BaseModel> extends Request implements CrudInt
 
     @Override
     public T create(BaseModel model) {
-        return (T) uncheckedBase.create(model)
+        var createdModel = (T) uncheckedBase.create(model)
                 .then()
                 .statusCode(HttpURLConnection.HTTP_OK)
                 .extract().as(endpoint.getModelClass());
+
+        TestDataStorage.getInstance().addCreatedEntity(endpoint, createdModel);
+
+        return createdModel;
     }
 
     @Override
