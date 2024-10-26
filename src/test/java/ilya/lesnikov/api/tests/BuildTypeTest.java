@@ -5,7 +5,6 @@ import ilya.lesnikov.api.models.Project;
 import ilya.lesnikov.api.requests.CheckedRequest;
 import ilya.lesnikov.api.requests.UncheckedRequest;
 import ilya.lesnikov.api.spec.Specifications;
-import ilya.lesnikov.api.utils.AssertionUtils;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -13,11 +12,9 @@ import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
 import java.net.HttpURLConnection;
 import java.util.Arrays;
-
 import static ilya.lesnikov.api.enums.Endpoint.*;
 import static ilya.lesnikov.api.generatos.TestDataGenerator.generate;
-import static ilya.lesnikov.api.utils.AssertionUtils.assertEquals;
-import static io.qameta.allure.Allure.step;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Tag("Regress")
 @DisplayName("")
@@ -72,33 +69,5 @@ public class BuildTypeTest extends BaseTest {
                 .create(buildTypeWithSameId)
                 .then().statusCode(HttpURLConnection.HTTP_BAD_REQUEST)
                 .body(Matchers.is(expectedResult));
-    }
-
-    @Test
-    @Tags({@Tag("Positive"), @Tag("Role")})
-    @DisplayName("Создание билда под админом")
-    public void test3() {
-        step("Создание юзера");
-        step("Создание проекта");
-        step("Назначение роли PROJECT_ADMIN на проект1");
-
-        step("Создание билда");
-        step("Создание проекта1");
-        step("Назначение роли PROJECT_ADMIN на проект1");
-
-    }
-
-    @Test
-    @Tags({@Tag("Negative"), @Tag("Role")})
-    @DisplayName("Создание билда под админом")
-    public void test4() {
-        step("Создание юзера");
-        step("Создание проекта");
-        step("Назначение роли PROJECT_ADMIN на проект1");
-
-        step("Создание билда");
-        step("Создание проекта1");
-        step("Назначение роли PROJECT_ADMIN на проект1");
-
     }
 }

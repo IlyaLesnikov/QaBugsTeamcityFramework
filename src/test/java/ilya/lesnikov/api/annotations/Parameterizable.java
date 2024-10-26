@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 /**
  * Поля с этой аннотацией будут заполняться переданным значением,
  * если параметр передан
- */
+ **/
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Parameterizable {
