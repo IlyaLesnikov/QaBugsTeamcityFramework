@@ -1,4 +1,4 @@
-package ilya.lesnikov.api.tests;
+package ilya.lesnikov;
 
 import ilya.lesnikov.api.config.Configuration;
 import ilya.lesnikov.api.generatos.TestDataStorage;

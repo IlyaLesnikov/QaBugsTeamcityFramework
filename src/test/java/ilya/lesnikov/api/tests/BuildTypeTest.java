@@ -1,5 +1,6 @@
 package ilya.lesnikov.api.tests;
 
+import ilya.lesnikov.BaseTest;
 import ilya.lesnikov.api.models.BuildType;
 import ilya.lesnikov.api.models.Project;
 import ilya.lesnikov.api.requests.CheckedRequest;
