@@ -1,6 +1,6 @@
 package ilya.lesnikov.api.spec;
 
-import ilya.lesnikov.api.config.Configuration;
+import ilya.lesnikov.api.config.Config;
 import ilya.lesnikov.api.models.User;
 import io.restassured.authentication.BasicAuthScheme;
 import io.restassured.builder.RequestSpecBuilder;
@@ -25,7 +25,7 @@ public class Specifications {
     public static RequestSpecification superUserAuthSpec() {
         BasicAuthScheme basicAuthScheme = new BasicAuthScheme();
         basicAuthScheme.setUserName("");
-        basicAuthScheme.setPassword(Configuration.getProperties("superUserToken"));
+        basicAuthScheme.setPassword(Config.getProperties("superUserToken"));
         return requestSpecBuilder()
                 .setContentType(ContentType.JSON)
                 .setAuth(basicAuthScheme)

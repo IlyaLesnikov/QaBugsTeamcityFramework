@@ -18,6 +18,7 @@
         <allure.version>2.29.0</allure.version>
         <jackson.version>2.18.0</jackson.version>
         <assertJ.version>3.26.3</assertJ.version>
+        <selenide.version>7.4.3</selenide.version>
     </properties>
 
     <dependencies>
@@ -71,6 +72,11 @@
             <artifactId>assertj-core</artifactId>
             <version>${assertJ.version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.codeborne</groupId>
+            <artifactId>selenide</artifactId>
+            <version>${selenide.version}</version>
         </dependency>
     </dependencies>
 

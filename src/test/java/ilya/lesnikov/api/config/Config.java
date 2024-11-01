@@ -4,21 +4,21 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-public class Configuration {
+public class Config {
     private final static String CONFIG_PROPERTIES = "config.properties";
-    private static Configuration configInstance;
+    private static Config configInstance;
     private static Properties properties;
 
-    private Configuration() {
+    private Config() {
         properties = new Properties();
         loadProperties();
     }
 
-    private static Configuration getConfigInstance() {
+    private static Config getConfigInstance() {
         if (configInstance == null) {
-            synchronized (Configuration.class) {
+            synchronized (Config.class) {
                 if (configInstance == null)
-                    configInstance = new Configuration();
+                    configInstance = new Config();
             }
         }
 
@@ -27,13 +27,13 @@ public class Configuration {
 
     private static void loadProperties() {
 
-        try (InputStream stream = Configuration.class.getClassLoader().getResourceAsStream(Configuration.CONFIG_PROPERTIES)) {
+        try (InputStream stream = Config.class.getClassLoader().getResourceAsStream(Config.CONFIG_PROPERTIES)) {
             if (properties == null)
-                System.err.println("File not found " + Configuration.CONFIG_PROPERTIES);
+                System.err.println("File not found " + Config.CONFIG_PROPERTIES);
             properties.load(stream);
 
         } catch (IOException e) {
-            System.err.println("Error during file reading " + Configuration.CONFIG_PROPERTIES);
+            System.err.println("Error during file reading " + Config.CONFIG_PROPERTIES);
         }
     }
 

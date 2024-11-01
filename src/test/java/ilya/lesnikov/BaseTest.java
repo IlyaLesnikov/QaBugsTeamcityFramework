@@ -1,6 +1,6 @@
 package ilya.lesnikov;
 
-import ilya.lesnikov.api.config.Configuration;
+import ilya.lesnikov.api.config.Config;
 import ilya.lesnikov.api.generatos.TestDataStorage;
 import ilya.lesnikov.api.models.TestData;
 import ilya.lesnikov.api.requests.CheckedRequest;
@@ -21,8 +21,8 @@ public class BaseTest {
 
     @BeforeAll
     public static void beforeTestAll() {
-        RestAssured.baseURI = Configuration.getProperties("host");
-        RestAssured.port = Integer.parseInt(Configuration.getProperties("port"));
+        RestAssured.baseURI = Config.getProperties("host");
+        RestAssured.port = Integer.parseInt(Config.getProperties("port"));
         RestAssured.filters(
                 new RequestLoggingFilter(),
                 new ResponseLoggingFilter()
