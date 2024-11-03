@@ -4,6 +4,9 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import ilya.lesnikov.BaseTest;
 import ilya.lesnikov.api.config.Config;
+import ilya.lesnikov.api.enums.Endpoint;
+import ilya.lesnikov.api.models.User;
+import ilya.lesnikov.ui.pages.LoginPage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 
@@ -25,5 +28,10 @@ abstract public class BaseUiTest extends BaseTest {
     @AfterEach
     public void closedWebDriver() {
         Selenide.closeWebDriver();
+    }
+
+    protected void loginAs() {
+        superUserCheckedRequest.getRequest(Endpoint.USERS).create(testData.getUser());
+        LoginPage.open().login(testData.getUser());
     }
 }

@@ -7,13 +7,13 @@ import ilya.lesnikov.api.models.User;
 import static com.codeborne.selenide.Selenide.$;
 
 public class LoginPage extends BasePage {
-    private static final String LOGIN = "/login.html";
+    private static final String LOGIN_ENDPOINT = "/login.html";
     private final SelenideElement inputUsername = $("#username");
     private final SelenideElement inputPassword = $("#password");
     private final SelenideElement buttonLogin = $(".loginButton");
 
     public static LoginPage open() {
-        return  Selenide.open(LOGIN, LoginPage.class);
+        return  Selenide.open(LOGIN_ENDPOINT, LoginPage.class);
     }
 
     public ProjectsPage login(User user) {
