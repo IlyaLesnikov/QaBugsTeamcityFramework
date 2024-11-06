@@ -5,7 +5,6 @@ import com.codeborne.selenide.Selenide;
 import ilya.lesnikov.BaseTest;
 import ilya.lesnikov.api.config.Config;
 import ilya.lesnikov.api.enums.Endpoint;
-import ilya.lesnikov.api.models.User;
 import ilya.lesnikov.ui.pages.LoginPage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;

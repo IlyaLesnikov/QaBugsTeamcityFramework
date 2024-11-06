@@ -23,18 +23,18 @@ public class UncheckedBase extends Request implements CrudInterface {
     }
 
     @Override
-    public Response read(String id) {
+    public Response read(String locator) {
         return given()
                 .spec(spec)
-                .get(String.format("%s/id:%s", endpoint.getUrl(), id));
+                .get(String.format("%s/%s", endpoint.getUrl(), locator));
     }
 
     @Override
-    public Response update(String id, BaseModel model) {
+    public Response update(String locator, BaseModel model) {
         return given()
                 .spec(spec)
                 .body(model)
-                .put(String.format("%s/id:%s", endpoint.getUrl(), id));
+                .put(String.format("%s/%s", endpoint.getUrl(), locator));
     }
 
     @Override

@@ -41,7 +41,7 @@ public class BuildTypeTest extends BaseTest {
 
         var createBuildType = userCheckRequest
                 .<BuildType>getRequest(BUILD_TYPES)
-                .read(testData.getBuildType().getId());
+                .read("id:" + testData.getBuildType().getId());
 
         assertEquals(testData.getBuildType().getName(), createBuildType.getName());
     }
