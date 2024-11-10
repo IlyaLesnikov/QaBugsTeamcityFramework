@@ -7,6 +7,7 @@ import ilya.lesnikov.api.requests.CrudInterface;
 import ilya.lesnikov.api.requests.Request;
 import ilya.lesnikov.api.requests.unchecked.UncheckedBase;
 import io.restassured.specification.RequestSpecification;
+
 import java.net.HttpURLConnection;
 
 @SuppressWarnings("unchecked")
@@ -50,7 +51,7 @@ public class CheckedBase<T extends BaseModel> extends Request implements CrudInt
     public String delete(String id) {
         return uncheckedBase.delete(id)
                 .then()
-                .statusCode(HttpURLConnection.HTTP_OK)
+                .statusCode(HttpURLConnection.HTTP_NO_CONTENT)
                 .extract().asString();
     }
 }

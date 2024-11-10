@@ -6,7 +6,11 @@ import ilya.lesnikov.api.models.Project;
 import ilya.lesnikov.ui.pages.ProjectPage;
 import ilya.lesnikov.ui.pages.ProjectsPage;
 import ilya.lesnikov.ui.pages.admin.CreateProjectPage;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Tags;
+import org.junit.jupiter.api.Test;
+
 import static ilya.lesnikov.api.data.Constants.REPO_URL;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;

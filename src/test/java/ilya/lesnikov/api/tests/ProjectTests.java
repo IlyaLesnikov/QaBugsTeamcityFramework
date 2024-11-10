@@ -6,8 +6,13 @@ import ilya.lesnikov.api.requests.CheckedRequest;
 import ilya.lesnikov.api.requests.UncheckedRequest;
 import ilya.lesnikov.api.spec.Specifications;
 import org.hamcrest.Matchers;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Tags;
+import org.junit.jupiter.api.Test;
+
 import java.net.HttpURLConnection;
+
 import static ilya.lesnikov.api.enums.Endpoint.PROJECTS;
 import static ilya.lesnikov.api.enums.Endpoint.USERS;
 import static ilya.lesnikov.api.generatos.TestDataGenerator.generate;

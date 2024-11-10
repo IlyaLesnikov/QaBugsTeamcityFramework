@@ -3,6 +3,7 @@ package ilya.lesnikov.ui.pages.admin;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import ilya.lesnikov.ui.pages.BasePage;
+
 import static com.codeborne.selenide.Selenide.$;
 
 public abstract class CreateBasePage extends BasePage {

@@ -11,8 +11,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
+
 import java.net.HttpURLConnection;
 import java.util.Arrays;
+
 import static ilya.lesnikov.api.enums.Endpoint.*;
 import static ilya.lesnikov.api.generatos.TestDataGenerator.generate;
 import static org.junit.jupiter.api.Assertions.assertEquals;

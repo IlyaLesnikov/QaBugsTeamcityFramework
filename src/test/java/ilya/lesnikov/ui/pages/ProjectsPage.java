@@ -4,6 +4,7 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import ilya.lesnikov.ui.elements.ProjectElement;
+
 import java.util.List;
 
 import static com.codeborne.selenide.Condition.visible;
