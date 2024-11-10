@@ -18,18 +18,18 @@ public class CreateProjectTests extends BaseUiTest {
     @Tags({@Tag("positive"), @Tag("smoke")})
     @DisplayName("Создание проекта пользователем")
     public void userCreateProjectTest() {
-        loginAs();
+        loginAs(testData.getUser());
 
         CreateProjectPage.open("_Root")
             .createForm(REPO_URL)
-            .setupProject(testData.getProject().getId(), testData.getBuildType().getName());
+            .setupProject(testData.getProject().getName(), testData.getBuildType().getName());
 
         var createdProject = superUserCheckedRequest.<Project>getRequest(Endpoint.PROJECTS).read("name:%s".formatted(testData.getProject().getName()));
         assertNotNull(createdProject);
 
-        ProjectPage.open(testData.getProject().getId()).title.shouldHave(Condition.exactText(testData.getProject().getId()));
+        ProjectPage.open(createdProject.getId()).title.shouldHave(Condition.exactText(testData. getProject().getName()));
 
-        var projectExist = ProjectsPage.open().getProjects().stream().anyMatch(element -> element.getName().getText().equals(testData.getProject().getName()));
+        var projectExist = ProjectsPage.open().getProjects().stream().anyMatch(project -> project.getName().text().equals(testData.getProject().getName()));
 
         assertTrue(projectExist);
     }

@@ -14,14 +14,12 @@ public class CreateProjectPage extends CreateBasePage {
 
     public CreateProjectPage createForm(String url) {
         createProject(url);
-        return Selenide.page(CreateProjectPage.class);
+        return this;
     }
 
-    public CreateProjectPage setupProject(String projectName, String buildConfigurationName) {
+    public void setupProject(String projectName, String buildConfigurationName) {
         projectNameInput.val(projectName);
         buildConfigurationNameInput.val(buildConfigurationName);
         proceedButton.click();
-
-        return Selenide.page(CreateProjectPage.class);
     }
 }

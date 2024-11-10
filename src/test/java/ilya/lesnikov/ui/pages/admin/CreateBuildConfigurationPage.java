@@ -1,7 +1,6 @@
 package ilya.lesnikov.ui.pages.admin;
 
 import com.codeborne.selenide.Selenide;
-import ilya.lesnikov.ui.pages.BuildConfigurationPage;
 
 public class CreateBuildConfigurationPage extends CreateBasePage {
     private static final String PROJECT_SHOW_MODE = "createBuildTypeMenu";
@@ -12,13 +11,11 @@ public class CreateBuildConfigurationPage extends CreateBasePage {
 
     public CreateBuildConfigurationPage createForm(String url) {
         createProject(url);
-        return Selenide.page(CreateBuildConfigurationPage.class);
+        return this;
     }
 
-    public BuildConfigurationPage setupProject(String buildConfigurationName) {
+    public void setupProject(String buildConfigurationName) {
         buildConfigurationNameInput.val(buildConfigurationName);
         proceedButton.click();
-
-        return Selenide.page(BuildConfigurationPage.class);
     }
 }

@@ -16,11 +16,9 @@ public class LoginPage extends BasePage {
         return  Selenide.open(LOGIN_ENDPOINT, LoginPage.class);
     }
 
-    public ProjectsPage login(User user) {
+    public void login(User user) {
         inputUsername.val(user.getUsername());
         inputPassword.val(user.getPassword());
         buttonLogin.click();
-
-        return Selenide.page(ProjectsPage.class);
     }
 }
