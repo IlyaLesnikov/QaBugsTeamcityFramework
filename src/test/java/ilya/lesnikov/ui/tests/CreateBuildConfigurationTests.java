@@ -4,12 +4,12 @@ import ilya.lesnikov.api.models.BuildType;
 import ilya.lesnikov.api.models.Project;
 import ilya.lesnikov.api.requests.CheckedRequest;
 import ilya.lesnikov.api.spec.Specifications;
+import ilya.lesnikov.ui.pages.ProjectsPage;
 import ilya.lesnikov.ui.pages.admin.CreateBuildConfigurationPage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
-
 import static ilya.lesnikov.api.data.Constants.REPO_URL;
 import static ilya.lesnikov.api.enums.Endpoint.BUILD_TYPES;
 import static ilya.lesnikov.api.enums.Endpoint.PROJECTS;
@@ -36,5 +36,14 @@ public class CreateBuildConfigurationTests extends BaseUiTest {
         assertNotNull(userCheckRequest
                 .<BuildType>getRequest(BUILD_TYPES)
                 .read("name:%s".formatted(testData.getBuildType().getName())));
+
+        ProjectsPage.open()
+                .getProjects()
+                .stream()
+                .filter(project -> project.getName().text().equals(testData.getProject().getName()))
+                .findFirst()
+                .get()
+                .getLink()
+                .click();
     }
 }
