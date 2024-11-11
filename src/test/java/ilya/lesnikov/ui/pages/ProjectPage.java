@@ -15,7 +15,7 @@ public class ProjectPage extends BasePage {
     private final static String PROJECT_ENDPOINT = "/project/%s";
     public SelenideElement title = $("[class*='ProjectPageHeader__title']");
     private final ElementsCollection projects = $$("[class*='Subproject__line']");
-    private final SelenideElement header = $("[class*='Subprojects__root']");
+    private final SelenideElement header = $("[class*='BuildTypeLine__root']");
 
     public static ProjectPage open(String projectId) {
 

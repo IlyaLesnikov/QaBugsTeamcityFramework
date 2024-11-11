@@ -13,8 +13,8 @@ import static com.codeborne.selenide.Selenide.$$;
 
 public class ProjectsPage extends BasePage {
     private static final String PROJECTS_ENDPOINT = "/favorite/projects";
-    private final ElementsCollection projects = $$("[class*='Subproject__line']");
-    private final SelenideElement header = $("[class*='Subprojects__root']");
+    private ElementsCollection projectElements = $$("div[class*='Subproject__container']");
+    private SelenideElement header = $(".MainPanel__router--gF > div");
 
     public static ProjectsPage open() {
         return Selenide.open(PROJECTS_ENDPOINT, ProjectsPage.class);
@@ -26,6 +26,6 @@ public class ProjectsPage extends BasePage {
 
 
     public List<ProjectElement> getProjects() {
-        return generatePageElements(projects, ProjectElement::new);
+        return generatePageElements(projectElements, ProjectElement::new);
     }
 }

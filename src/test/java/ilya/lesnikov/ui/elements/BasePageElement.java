@@ -4,6 +4,7 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
+
 public abstract class BasePageElement {
     private final SelenideElement element;
 
@@ -26,5 +27,4 @@ public abstract class BasePageElement {
     protected ElementsCollection findAll(String cssSelector) {
         return element.$$(cssSelector);
     }
-
 }

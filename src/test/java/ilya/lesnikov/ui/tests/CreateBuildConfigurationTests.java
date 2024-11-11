@@ -5,13 +5,13 @@ import ilya.lesnikov.api.models.BuildType;
 import ilya.lesnikov.api.models.Project;
 import ilya.lesnikov.api.requests.CheckedRequest;
 import ilya.lesnikov.api.spec.Specifications;
+import ilya.lesnikov.ui.elements.ProjectElement;
 import ilya.lesnikov.ui.pages.ProjectPage;
 import ilya.lesnikov.ui.pages.ProjectsPage;
 import ilya.lesnikov.ui.pages.admin.CreateBuildConfigurationPage;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Tags;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+
+import static com.codeborne.selenide.Selenide.$;
 import static ilya.lesnikov.api.data.Constants.REPO_URL;
 import static ilya.lesnikov.api.enums.Endpoint.BUILD_TYPES;
 import static ilya.lesnikov.api.enums.Endpoint.PROJECTS;
@@ -39,9 +39,12 @@ public class CreateBuildConfigurationTests extends BaseUiTest {
                 .<BuildType>getRequest(BUILD_TYPES)
                 .read("name:%s".formatted(testData.getBuildType().getName())));
 
-        var createdBuildType = ProjectPage.open(testData.getProject().getId()).getProjects().stream().findFirst().get().getName();
+        var createdBuildType = ProjectsPage.open()
+                .getProjects()
+                .stream().findFirst().get();
 
-        createdBuildType.shouldHave(Condition.exactText(testData.getBuildType().getName()));
+        createdBuildType.getLink().click();
+        createdBuildType.getName().shouldHave(Condition.exactText(testData.getBuildType().getName()));
     }
 
     @Test
