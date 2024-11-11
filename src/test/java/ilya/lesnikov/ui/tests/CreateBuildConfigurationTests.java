@@ -1,9 +1,11 @@
 package ilya.lesnikov.ui.tests;
 
+import com.codeborne.selenide.Condition;
 import ilya.lesnikov.api.models.BuildType;
 import ilya.lesnikov.api.models.Project;
 import ilya.lesnikov.api.requests.CheckedRequest;
 import ilya.lesnikov.api.spec.Specifications;
+import ilya.lesnikov.ui.pages.ProjectPage;
 import ilya.lesnikov.ui.pages.ProjectsPage;
 import ilya.lesnikov.ui.pages.admin.CreateBuildConfigurationPage;
 import org.junit.jupiter.api.DisplayName;
@@ -37,13 +39,26 @@ public class CreateBuildConfigurationTests extends BaseUiTest {
                 .<BuildType>getRequest(BUILD_TYPES)
                 .read("name:%s".formatted(testData.getBuildType().getName())));
 
-        ProjectsPage.open()
-                .getProjects()
-                .stream()
-                .filter(project -> project.getName().text().equals(testData.getProject().getName()))
-                .findFirst()
-                .get()
-                .getLink()
-                .click();
+        var createdBuildType = ProjectPage.open(testData.getProject().getId()).getProjects().stream().findFirst().get().getName();
+
+        createdBuildType.shouldHave(Condition.exactText(testData.getBuildType().getName()));
+    }
+
+    @Test
+    @Tags({@Tag("smoke"), @Tag("positive")})
+    @DisplayName("Создания билд конфигурации с пустым обязательным полем")
+    public void creatingBuildConfigurationWithEmptyRequiredField() {
+        loginAs(testData.getUser());
+
+        var userCheckRequest = new CheckedRequest(Specifications.superUserAuthSpec());
+        userCheckRequest
+                .<Project>getRequest(PROJECTS)
+                .create(testData.getProject());
+
+        CreateBuildConfigurationPage.open(testData.getProject().getId())
+                .createForm(REPO_URL)
+                .setupProject("");
+
+        new CreateBuildConfigurationPage().buildConfigurationNameError.shouldHave(Condition.exactText("Build configuration name must not be empty"));
     }
 }
