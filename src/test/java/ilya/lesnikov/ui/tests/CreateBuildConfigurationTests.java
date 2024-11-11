@@ -45,7 +45,7 @@ public class CreateBuildConfigurationTests extends BaseUiTest {
     }
 
     @Test
-    @Tags({@Tag("smoke"), @Tag("positive")})
+    @Tags({@Tag("smoke"), @Tag("negative")})
     @DisplayName("Создания билд конфигурации с пустым обязательным полем")
     public void creatingBuildConfigurationWithEmptyRequiredField() {
         loginAs(testData.getUser());
