@@ -5,13 +5,10 @@ import ilya.lesnikov.api.models.BuildType;
 import ilya.lesnikov.api.models.Project;
 import ilya.lesnikov.api.requests.CheckedRequest;
 import ilya.lesnikov.api.spec.Specifications;
-import ilya.lesnikov.ui.elements.ProjectElement;
-import ilya.lesnikov.ui.pages.ProjectPage;
+import ilya.lesnikov.ui.pages.BuildPage;
 import ilya.lesnikov.ui.pages.ProjectsPage;
 import ilya.lesnikov.ui.pages.admin.CreateBuildConfigurationPage;
 import org.junit.jupiter.api.*;
-
-import static com.codeborne.selenide.Selenide.$;
 import static ilya.lesnikov.api.data.Constants.REPO_URL;
 import static ilya.lesnikov.api.enums.Endpoint.BUILD_TYPES;
 import static ilya.lesnikov.api.enums.Endpoint.PROJECTS;
@@ -39,12 +36,17 @@ public class CreateBuildConfigurationTests extends BaseUiTest {
                 .<BuildType>getRequest(BUILD_TYPES)
                 .read("name:%s".formatted(testData.getBuildType().getName())));
 
-        var createdBuildType = ProjectsPage.open()
+        ProjectsPage.open()
                 .getProjects()
-                .stream().findFirst().get();
+                .stream()
+                .findFirst()
+                .get().getLink().click();
 
-        createdBuildType.getLink().click();
-        createdBuildType.getName().shouldHave(Condition.exactText(testData.getBuildType().getName()));
+        new BuildPage()
+                .getBuilds()
+                .stream()
+                .findFirst()
+                .get().getName().shouldHave(Condition.exactText(testData.getBuildType().getName()));
     }
 
     @Test

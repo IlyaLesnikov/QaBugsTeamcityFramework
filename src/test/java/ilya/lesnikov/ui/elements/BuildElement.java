@@ -4,17 +4,15 @@ import com.codeborne.selenide.SelenideElement;
 import lombok.Getter;
 
 @Getter
-public class ProjectElement extends  BasePageElement {
+public class BuildElement extends BasePageElement {
     private SelenideElement name;
     private SelenideElement link;
     private SelenideElement button;
-    private SelenideElement arrow;
 
-    public ProjectElement(SelenideElement element) {
+    public BuildElement(SelenideElement element) {
         super(element);
         this.name = find("span[class*='MiddleEllipsis__searchable']");
         this.link = find("a");
         this.button = find("button");
-        this.arrow = find("[class*='Subproject__arrow']");
     }
 }
