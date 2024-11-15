@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition;
 import ilya.lesnikov.api.models.BuildType;
 import ilya.lesnikov.api.models.Project;
 import ilya.lesnikov.api.requests.CheckedRequest;
+import ilya.lesnikov.api.requests.UncheckedRequest;
 import ilya.lesnikov.api.spec.Specifications;
 import ilya.lesnikov.ui.pages.BuildPage;
 import ilya.lesnikov.ui.pages.ProjectsPage;
@@ -64,6 +65,7 @@ public class CreateBuildConfigurationTests extends BaseUiTest {
                 .createForm(REPO_URL)
                 .setupProject("");
 
+        new UncheckedRequest(Specifications.superUserAuthSpec()).getRequest(BUILD_TYPES).read(testData.getBuildType().getId()).then().statusCode(404);
         new CreateBuildConfigurationPage().buildConfigurationNameError.shouldHave(Condition.exactText("Build configuration name must not be empty"));
     }
 }
