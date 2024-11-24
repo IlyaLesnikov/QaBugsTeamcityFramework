@@ -1,0 +1,17 @@
+name: Deploy frontend
+
+on: workflow_call
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    step:
+      - name: Build frontend
+        run: echo "Собирается билд ФРОНТа \(прогоняются юнит тесты при сборке, запускаются линтеры\), формируется docker образ с изменения"
+
+  deploy_stage:
+    needs: test
+    runs_on: ubuntu-latest
+    step:
+      - name: Deploy frontend to stage/review app
+        run: echo "Просходит делой ФРОНТа"

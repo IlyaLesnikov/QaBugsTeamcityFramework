@@ -1,0 +1,24 @@
+name: TeamCity deployment
+
+on: push
+
+jobs:
+  backend:
+    uses: ./.github/workflows/backend_stage.yaml
+
+  frontend:
+    needs: backend
+    uses: ./.github/workflows/frontend_stage.yaml
+
+  automation-api:
+    needs: [ backend, frontend ]
+    uses: ./.github/workflows/automation.yaml
+    with:
+      package: api
+
+  automation-ui:
+    needs: [ backend, frontend ]
+    uses: ./.github/workflows/automation.yaml
+    with:
+      package: ui
+

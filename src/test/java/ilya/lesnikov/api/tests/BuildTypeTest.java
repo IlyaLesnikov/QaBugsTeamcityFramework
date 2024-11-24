@@ -19,7 +19,7 @@ import static ilya.lesnikov.api.enums.Endpoint.*;
 import static ilya.lesnikov.api.generatos.TestDataGenerator.generate;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@Tag("Regress")
+@Tag("regress")
 @DisplayName("")
 public class BuildTypeTest extends BaseTest {
 
