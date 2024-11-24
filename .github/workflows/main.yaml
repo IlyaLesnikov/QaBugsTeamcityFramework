@@ -4,10 +4,11 @@ on: push
 
 jobs:
   backend:
-    uses: ./.github/workflows/backend_stage.yaml
+    uses: ./.github/workflows/backend-stage.yaml
 
   frontend:
-    uses: ./.github/workflows/frontend_stage.yaml
+    uses: ./.github/workflows/frontend-stage.yaml
+
 
   automation-api:
     needs: [ backend, frontend ]
