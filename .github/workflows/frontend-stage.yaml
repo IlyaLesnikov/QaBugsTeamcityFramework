@@ -7,11 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Build frontend
-        run: echo "Собирается билд ФРОНТа \(прогоняются юнит тесты при сборке, запускаются линтеры\), формируется docker образ с изменения"
+        run: echo "Собирается билд ФРОНТа \(прогоняются юнит тесты при сборке, запускаются линтеры\), формируется docker образ с изменения
 
   deploy_stage:
     runs-on: ubuntu-latest
     needs: test
     steps:
       - name: Deploy frontend to stage/review app
-        run: echo "Просходит делой ФРОНТа"
+        run: echo Просходит делой ФРОНТа

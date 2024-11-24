@@ -8,8 +8,6 @@ on:
         required: true
         type: string
 
-
-
 jobs:
   validate-checkstyle:
     runs-on: ubuntu-latest

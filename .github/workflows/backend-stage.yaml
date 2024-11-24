@@ -7,11 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Build backend
-        run: echo "Собирается билд БЭКа \(прогоняются юнит тесты при сборке, запускаются линтеры\), формируется docker образ с изменения"
+        run: echo Собирается билд БЭКа \(прогоняются юнит тесты при сборке, запускаются линтеры\), формируется docker образ с изменения
 
   deploy_stage:
     needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Deploy backend to stage/review app
-        run: echo "Просходит делой БЭКа"
+        run: echo Просходит делой БЭКа
