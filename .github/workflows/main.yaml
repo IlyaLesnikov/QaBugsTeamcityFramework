@@ -7,7 +7,6 @@ jobs:
     uses: ./.github/workflows/backend_stage.yaml
 
   frontend:
-    needs: backend
     uses: ./.github/workflows/frontend_stage.yaml
 
   automation-api:
