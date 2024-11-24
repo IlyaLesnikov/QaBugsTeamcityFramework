@@ -11,31 +11,31 @@ on:
 
 
 jobs:
-   validate-checkstyle:
-     runs-on: ubuntu-latest
-     steps:
-       - uses: actions/checkout@v4
+  validate-checkstyle:
+    runs-on: ubuntu-latest
+    steps:
+     - uses: actions/checkout@v4
 
-       - name: Set up JDK
-         uses: actions/setup-java@v4
-         with:
-           java-version: '17'
-           distribution: 'zulu'
+     - name: Set up JDK
+       uses: actions/setup-java@v4
+       with:
+         java-version: '17'
+         distribution: 'zulu'
 
-       - name: Validate Checkstyle
-         run: ./mvnw validate
+     - name: Validate Checkstyle
+       run: ./mvnw validate
 
-   run-test:
-     needs: validate-checkstyle
-     runs-on: ubuntu-latest
-     steps:
-       - uses: actions/checkout@v4
+  run-test:
+    needs: validate-checkstyle
+    runs-on: ubuntu-latest
+    steps:
+     - uses: actions/checkout@v4
 
-       - name: TeamCity Setup
-         uses: ./.github/actions/teamcity-setup
+     - name: TeamCity Setup
+       uses: ./.github/actions/teamcity-setup
 
-       - name: Run tests
-         continue-on-error: true
-         run: ./mvnw test -Dtest='ilya.lesnikov.${{ inputs.package }}.**' -Dtag=regress
+     - name: Run tests
+       continue-on-error: true
+       run: ./mvnw test -Dtest='ilya.lesnikov.${{ inputs.package }}.**' -Dtag=regress
 
 
